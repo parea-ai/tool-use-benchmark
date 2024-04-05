@@ -19,7 +19,7 @@ def create_call_openai(p: Parea, model_name: str) -> callable:
         if type(functions) is not list:
             functions = [functions]
         message = [{"role": "user", "content": "Questions:" + prompt}]
-        oai_tool = convert_to_tool(
+        tools = convert_to_tool(
             functions, GORILLA_TO_OPENAPI, 'openai', test_category, True
         )
 
@@ -29,7 +29,7 @@ def create_call_openai(p: Parea, model_name: str) -> callable:
             temperature=0.7,
             max_tokens=1200,
             top_p=1.0,
-            tools=oai_tool,
+            tools=tools,
         )
         try:
             result = [

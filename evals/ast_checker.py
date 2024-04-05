@@ -120,6 +120,6 @@ def ast_check_eval(log: Log) -> list[EvaluationResult]:
         EvaluationResult(
             score=ast_checker_result["valid"],
             name="ast_checker",
-            reason='\n'.join(ast_checker_result["error"]) if not ast_checker_result["valid"] else None,
+            reason='\n'.join([json.dumps(error) for error in ast_checker_result['error']]) if not ast_checker_result["valid"] else None,
         )
     ]

@@ -1,38 +1,41 @@
-import json
 import os
 
 from dotenv import load_dotenv
 from parea import Parea
 
+from load_data import load_data
+from inference.call_anthropic import create_call_anthropic
 from inference.call_openai import create_call_openai
 
-test_category = 'simple'
-inputs_path = f'data/gorilla_openfunctions_v1_test_{test_category}.json'
-target_path = f'data/possible_answers/gorilla_openfunctions_v1_test_{test_category}.json'
-with open(inputs_path) as f:
-    lines_inputs = f.readlines()
-with open(target_path) as f:
-    lines_targets = f.readlines()
-
-data = [
-    {
-        'test_category': test_category,
-        "target": json.loads(target),
-        **json.loads(line_inputs),
-    }
-    for line_inputs, target in zip(lines_inputs, lines_targets)
-]
 
 load_dotenv()
 
 p = Parea(api_key=os.getenv("PAREA_API_KEY"), project_name="tool-calling-benchmark")
 
 
-call_openai = create_call_openai(p, "gpt-4-0125-preview")
-# call_openai = create_call_openai(p, "gpt-3.5-turbo-0125")
+def benchmark_models_on_data(test_category: str, data: list[dict]):
+    for model_name, create_fn in [
+        ("gpt-3.5-turbo-0125", create_call_openai),
+        ("gpt-4-0125-preview", create_call_openai),
+        ("claude-3-haiku-20240307", create_call_anthropic),
+        ("claude-3-opus-20240229", create_call_anthropic),
+    ]:
+        print(f'Running {model_name} on {test_category}...')
+        llm_call = create_fn(p, model_name)
+        p.experiment(
+            f'Category {test_category}',
+            data,
+            llm_call,
+        ).run(model_name.replace('.', ''))
 
-p.experiment(
-    f'Category {test_category}',
-    data,
-    call_openai
-).run()
+
+if __name__ == "__main__":
+    categories = [
+        'parallel_function',
+        'parallel_multiple_function',
+        'java',
+        'javascript',
+    ]
+    for category in categories:
+        data = load_data(category)
+        benchmark_models_on_data(category, data)

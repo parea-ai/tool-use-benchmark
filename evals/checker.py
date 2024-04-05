@@ -292,8 +292,14 @@ def simple_function_checker(
     possible_answer = list(possible_answer.values())[0]
     # Extract function name and parameters details
     func_name = func_description["name"]
-    param_details = func_description["parameters"]["properties"]
-    required_params = func_description["parameters"]["required"]
+
+    if "parameters" not in func_description:
+        parameter_field_name = "input_schema"
+    else:
+        parameter_field_name = "parameters"
+
+    param_details = func_description[parameter_field_name]["properties"]
+    required_params = func_description[parameter_field_name]["required"]
 
     # Initialize a result dictionary
     result = {

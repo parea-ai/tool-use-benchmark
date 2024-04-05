@@ -90,25 +90,30 @@ def convert_to_tool(
     functions, mapping, provider, test_category, stringify_parameters=False
 ):
     tools = []
+    if provider == "anthropic":
+        parameter_field_name = "input_schema"
+    else:
+        parameter_field_name = "parameters"
     for item in functions:
-        if "." in item["name"] and (
-                provider == 'openai'
-        ):
+        if provider == "anthropic":
+            item["input_schema"] = item.pop("parameters")
+        if "." in item["name"] and provider in ['openai', 'anthropic']:
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
-        item["parameters"]["type"] = "object"
-        item["parameters"]["properties"] = _cast_to_openai_type(
-            item["parameters"]["properties"], mapping, test_category
+        item[parameter_field_name]["type"] = "object"
+        item[parameter_field_name]["properties"] = _cast_to_openai_type(
+            item[parameter_field_name]["properties"], mapping, test_category
         )
         # When Java and Javascript, for OpenAPI compatible models, let it become string.
         if (
             provider
             in [
                 'openai',
+                'anthropic',
             ]
             and stringify_parameters
         ):
-            properties = item["parameters"]["properties"]
+            properties = item[parameter_field_name]["properties"]
             if test_category == "java":
                 for key, value in properties.items():
                     if value["type"] in JAVA_TYPE_CONVERSION:
