@@ -1,17 +1,17 @@
 tool calling,model,ast_percentage
-simple,claude-3-opus-20240229,87
-simple,claude-3-haiku-20240307,93
-simple,gpt-4-0125-preview,89
-simple,gpt-35-turbo-0125,54
-multiple,claude-3-opus-20240229,87
-multiple,claude-3-haiku-20240307,92
-multiple,gpt-4-0125-preview,89
-multiple,gpt-35-turbo-0125,67
-parallel,claude-3-opus-20240229,85
-parallel,claude-3-haiku-20240307,93
-parallel,gpt-4-0125-preview,90
-parallel,gpt-35-turbo-0125,70
-parallel multiple,claude-3-opus-20240229,85
-parallel multiple,claude-3-haiku-20240307,92
-parallel multiple,gpt-4-0125-preview,90
-parallel multiple,gpt-35-turbo-0125,70
+Simple,claude-3-opus-20240229,87
+Simple,claude-3-haiku-20240307,93
+Simple,gpt-4-0125-preview,89
+Simple,gpt-35-turbo-0125,54
+Multiple,claude-3-opus-20240229,87
+Multiple,claude-3-haiku-20240307,92
+Multiple,gpt-4-0125-preview,89
+Multiple,gpt-35-turbo-0125,67
+Parallel,claude-3-opus-20240229,85
+Parallel,claude-3-haiku-20240307,93
+Parallel,gpt-4-0125-preview,90
+Parallel,gpt-35-turbo-0125,70
+Parallel Multiple,claude-3-opus-20240229,85
+Parallel Multiple,claude-3-haiku-20240307,92
+Parallel Multiple,gpt-4-0125-preview,90
+Parallel Multiple,gpt-35-turbo-0125,70
