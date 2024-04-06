@@ -23,7 +23,7 @@ def benchmark_models_on_data(test_category: str, data: list[dict]):
         print(f'Running {model_name} on {test_category}...')
         llm_call = create_fn(p, model_name)
         p.experiment(
-            f'Category {test_category}',
+            f'{test_category} category',
             data,
             llm_call,
         ).run(model_name.replace('.', ''))
@@ -31,6 +31,8 @@ def benchmark_models_on_data(test_category: str, data: list[dict]):
 
 if __name__ == "__main__":
     categories = [
+        'simple',
+        'multiple_function',
         'parallel_function',
         'parallel_multiple_function',
         'java',

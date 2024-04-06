@@ -35,17 +35,17 @@ def java_type_converter(value, expected_type, nested_type=None):
         if not re.match(r"^\'.$\'", value):
             return str(value)  # default to string
         return value  # Remove the single quotes
-    elif expected_type == "Array" or expected_type == "ArrayList":
+    elif expected_type == "Array" or expected_type == "ArrayList" or expected_type == "array":
         return parse_java_collection(value, expected_type, nested_type)
     elif expected_type == "Set":
         raise NotImplementedError("Set conversion is not implemented")
-    elif expected_type == "HashMap":
+    elif expected_type == "HashMap" or expected_type == 'dict':
         return parse_java_collection(value, expected_type, nested_type)
     elif expected_type == "Hashtable":
         raise NotImplementedError("Set conversion is not implemented")
     elif expected_type == "Queue" or expected_type == "Stack":
         raise NotImplementedError(f"{expected_type} conversion is not implemented")
-    elif expected_type == "String" or expected_type == "any":
+    elif expected_type == "String" or expected_type == "any" or expected_type == "string":
         return str(value)  # we output as string for `any` type
     else:
         raise ValueError(f"Unsupported type: {expected_type}")

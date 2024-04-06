@@ -2,7 +2,6 @@ import json
 
 
 def load_data(test_category: str) -> list[dict]:
-    test_category = 'multiple_function'
     inputs_path = f'data/gorilla_openfunctions_v1_test_{test_category}.json'
     target_path = f'data/possible_answers/gorilla_openfunctions_v1_test_{test_category}.json'
     with open(inputs_path) as f:

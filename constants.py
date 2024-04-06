@@ -85,12 +85,15 @@ JAVA_TYPE_CONVERSION = {
     "byte": int,
     "short": int,
     "integer": int,
+    "number": float,
     "float": float,
     "double": float,
     "long": int,
     "boolean": bool,
     "char": str,
+    "object": dict,
     "Array": list,
+    "array": list,
     "ArrayList": list,
     "Set": set,
     "HashMap": dict,
@@ -98,16 +101,20 @@ JAVA_TYPE_CONVERSION = {
     "Queue": list,  # this can be `queue.Queue` as well, for simplicity we check with list
     "Stack": list,
     "String": str,
+    "string": str,
     "any": str,
 }
 
 JS_TYPE_CONVERSION = {
     "String": str,
+    "string": str,
     "integer": int,
     "float": float,
+    "number": float,
     "Bigint": int,
     "Boolean": bool,
     "dict": dict,
+    "object": dict,
     "array": list,
     "any": str,
 }

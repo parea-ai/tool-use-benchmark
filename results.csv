@@ -7,11 +7,11 @@ Multiple,claude-3-opus-20240229,87
 Multiple,claude-3-haiku-20240307,92
 Multiple,gpt-4-0125-preview,89
 Multiple,gpt-35-turbo-0125,67
-Parallel,claude-3-opus-20240229,85
-Parallel,claude-3-haiku-20240307,93
-Parallel,gpt-4-0125-preview,90
-Parallel,gpt-35-turbo-0125,70
-Parallel Multiple,claude-3-opus-20240229,85
-Parallel Multiple,claude-3-haiku-20240307,92
-Parallel Multiple,gpt-4-0125-preview,90
-Parallel Multiple,gpt-35-turbo-0125,70
+Parallel,claude-3-opus-20240229,61
+Parallel,claude-3-haiku-20240307,00
+Parallel,gpt-4-0125-preview,89
+Parallel,gpt-35-turbo-0125,88
+Parallel Multiple,claude-3-opus-20240229,41
+Parallel Multiple,claude-3-haiku-20240307,00
+Parallel Multiple,gpt-4-0125-preview,64
+Parallel Multiple,gpt-35-turbo-0125,57

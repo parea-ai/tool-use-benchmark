@@ -97,6 +97,7 @@ def convert_to_tool(
     for item in functions:
         if provider == "anthropic":
             item["input_schema"] = item.pop("parameters")
+            item.pop('api_call', None)
         if "." in item["name"] and provider in ['openai', 'anthropic']:
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
