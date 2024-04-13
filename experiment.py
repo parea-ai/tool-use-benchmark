@@ -19,6 +19,7 @@ def benchmark_models_on_data(test_category: str, data: list[dict]):
         ("gpt-4-0125-preview", create_call_openai),
         ("claude-3-haiku-20240307", create_call_anthropic),
         ("claude-3-opus-20240229", create_call_anthropic),
+        ("gpt-4-turbo-2024-04-09", create_call_openai),
     ]:
         print(f'Running {model_name} on {test_category}...')
         llm_call = create_fn(p, model_name)
